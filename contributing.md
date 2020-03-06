@@ -4,9 +4,10 @@
 
 * [Reporting bugs](#reporting-bugs)
 * [Suggesting improvements](#suggesting-improvements)
-* [Pull requests](#pull-requests) 
+* [Pull requests](#pull-requests)
 
 ### Reporting bugs
+
 Before creating bug reports, please check [this list](#before-submitting-a-bug-report) as you might find out that you don't need to create one. When you are creating a bug report, please [include as many details as possible](#how-do-i-submit-a-good-bug-report).
 
 > **Note:** If you find a **Closed** issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one.

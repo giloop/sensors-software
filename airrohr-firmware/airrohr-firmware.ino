@@ -1,5 +1,6 @@
 #include <Arduino.h>
-#define INTL_DE
+// Define by default in platformio.ini [env:nodemcuv2] 
+#define INTL_FR
 
 /************************************************************************
  *                                                                      *
@@ -28,7 +29,7 @@
  * OK LAB Particulate Matter Sensor                                     *
  *      - nodemcu-LoLin board                                           *
  *      - Nova SDS0111                                                  *
- *  ﻿http://inovafitness.com/en/Laser-PM2-5-Sensor-SDS011-35.html        *
+ *   http://inovafitness.com/en/Laser-PM2-5-Sensor-SDS011-35.html       *
  *                                                                      *
  * Wiring Instruction:                                                  *
  *      - SDS011 Pin 1  (TX)   -> Pin D1 / GPIO5                        *
@@ -60,7 +61,7 @@
  *                                                                      *
  ************************************************************************
  * Extension: DHT22 (AM2303)                                            *
- *  ﻿http://www.aosong.com/en/products/details.asp?id=117                *
+ *  http://www.aosong.com/en/products/details.asp?id=117                *
  *                                                                      *
  * DHT22 Wiring Instruction                                             *
  * (left to right, front is perforated side):                           *
@@ -89,14 +90,16 @@
  *
  * 06.07.2018
  * Der Sketch verwendet 459607 Bytes (44%) des Programmspeicherplatzes. Das Maximum sind 1044464 Bytes.
- * Globale Variablen verwenden 48736 Bytes (59%) des dynamischen Speichers, 33184 Bytes für lokale Variablen verbleiben. Das Maximum sind 81920 Bytes.
+ * Globale Variablen verwenden 48736 Bytes (59%) des dynamischen Speichers, 
+ * 33184 Bytes für lokale Variablen verbleiben. Das Maximum sind 81920 Bytes.
  *
  * Der Sketch verwendet 458287 Bytes (43%) des Programmspeicherplatzes. Das Maximum sind 1044464 Bytes.
- * Globale Variablen verwenden 48608 Bytes (59%) des dynamischen Speichers, 33312 Bytes für lokale Variablen verbleiben. Das Maximum sind 81920 Bytes.
+ * Globale Variablen verwenden 48608 Bytes (59%) des dynamischen Speichers, 
+ * 33312 Bytes für lokale Variablen verbleiben. Das Maximum sind 81920 Bytes.
  *
  ************************************************************************/
 // increment on change
-#define SOFTWARE_VERSION "NRZ-2018-111"
+#define SOFTWARE_VERSION "NRZ-2020-030"
 
 /*****************************************************************
  * Includes                                                      *
@@ -151,6 +154,7 @@
 #else
 #include "intl_de.h"
 #endif
+
 #include "ext_def.h"
 #include "html-content.h"
 
@@ -159,7 +163,7 @@
  *****************************************************************/
 char wlanssid[35] = "Freifunk-disabled";
 char wlanpwd[65] = "";
-char current_lang[3] = "DE";
+char current_lang[3] = "FR";
 char www_username[65] = "admin";
 char www_password[65] = "feinstaub";
 bool www_basicauth_enabled = 0;
@@ -189,7 +193,7 @@ bool send2madavi = 1;
 bool send2sensemap = 0;
 bool send2fsapp = 0;
 bool send2custom = 0;
-bool send2lora = 1;
+bool send2lora = 0;
 bool send2influx = 0;
 bool send2csv = 0;
 bool auto_update = 0;
@@ -257,8 +261,8 @@ LiquidCrystal_I2C lcd_2004_27(0x27, 20, 4);
 /*****************************************************************
  * SDS011 declarations                                           *
  *****************************************************************/
-SoftwareSerial serialSDS(PM_SERIAL_RX, PM_SERIAL_TX, false, 128);
-SoftwareSerial serialGPS(GPS_SERIAL_RX, GPS_SERIAL_TX, false, 512);
+SoftwareSerial serialSDS(PM_SERIAL_RX, PM_SERIAL_TX, false); //, 128);
+SoftwareSerial serialGPS(GPS_SERIAL_RX, GPS_SERIAL_TX, false); //, 512);
 
 /*****************************************************************
  * DHT declaration                                               *
